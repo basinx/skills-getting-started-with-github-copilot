@@ -29,7 +29,21 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           participantsHTML += `<li class='no-participants'>No participants yet</li>`;
         }
-        participantsHTML += "</ul>";
+        // Create participants list DOM
+        const participantsList = document.createElement("ul");
+        participantsList.className = "participants-list";
+        if (details.participants.length > 0) {
+          details.participants.forEach(participant => {
+            const li = document.createElement("li");
+            li.textContent = participant;
+            participantsList.appendChild(li);
+          });
+        } else {
+          const li = document.createElement("li");
+          li.className = "no-participants";
+          li.textContent = "No participants yet";
+          participantsList.appendChild(li);
+        }
 
         activityCard.innerHTML = `
           <h4>${name}</h4>
